@@ -21,7 +21,8 @@ class ListTest < Minitest::Test
   def test_can_find_node_by_value
     list1 = List.new
     node1 = Node.new("Ryan")
-    assert_equal "Node #{@count} has #{list1.find_by_value}."
+    list1.prepend(node1)
+    assert_equal node1, list1.find_by_value("Ryan")
   end
 
   def test_can_prepend_node_to_head
