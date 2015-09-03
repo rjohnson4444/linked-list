@@ -11,6 +11,13 @@ class ListTest < Minitest::Test
     assert_equal nil, list.tail
   end
 
+  def test_can_count_nodes_in_list
+    list1 = List.new
+    node1 = Node.new("Ryan")
+    list1.append(node1)
+    assert_equal 1, list1.count
+  end
+
   def test_can_prepend_node_to_head
     list = List.new
     node1 = Node.new("Ryan")
@@ -30,19 +37,5 @@ class ListTest < Minitest::Test
     node1 = Node.new("Ryan")
     list.append(node1)
     assert_equal true, list.include?("Ryan")
-  end
-
-  def test_has_a_head_value
-    skip
-    list = List.new
-    node = Node.new("Ryan")
-    assert_equal "Ryan", list.head_value
-  end
-
-  def test_has_a_tail_value
-    list = List.new
-    node1 = Node.new("Ryan")
-    list.append(node1)
-    assert_equal "Ryan", list.tail_value
   end
 end
