@@ -1,11 +1,6 @@
 require 'node'
 
 class NodeTest < Minitest::Test
-  def test_has_an_instance
-    node = Node.new("Ryan")
-    assert_equal Node.new("Ryan"), node
-  end
-
   def test_has_data
     node = Node.new("Ryan")
     assert_equal "Ryan", node.data

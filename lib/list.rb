@@ -2,10 +2,24 @@ require_relative 'node'
 
 class List < Node
   attr_accessor :head, :tail, :name
-
   def initialize
     self.head = nil
     self.tail = nil
+  end
+
+  def head_value
+    return self.head.data
+  end
+
+  def tail_value
+     return self.tail.data
+  end
+
+  def pop
+    return nil if self.tail.nil?
+    node = self.tail
+    self.tail = self.tail.next_node
+    return node
   end
 
   def append(node)
@@ -18,8 +32,12 @@ class List < Node
     end
   end
 
-  def insert
-
+  def insert(node)
+    if self.head.nil?
+      self.head = node
+    elsif self.head.next_node == nil
+      self.head.next_node = node
+    end
   end
 
   def include?(find)
@@ -49,6 +67,21 @@ end
 # node2 = Node.new("Fred")
 # node3 = Node.new("Jake")
 # list1 = List.new
+#
+# list1.append(node2)
+# list1.head_value
+# list1.prepend(node3)
+# list1.head_value
+#
+# list1
+#
+# list1.pop
+# list1
+# list1.pop
+#
+# list1.insert(node1)
+# list1.head_value
+# list1.tail_value
 # node1 = Node.new("Ryan")
 # list1.append(node2)
 # list1
