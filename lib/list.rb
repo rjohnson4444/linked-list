@@ -1,35 +1,62 @@
-require_relative 'node'  # => true
+require_relative 'node'
 
-class List < Node                    # => Node
-  attr_accessor :head, :tail, :name  # => nil
+class List < Node
+  attr_accessor :head, :tail, :name
 
   def initialize
-    self.head = nil  # => nil
-  end                # => :initialize
+    self.head = nil
+    self.tail = nil
+  end
+
+  def append(node)
+    if self.head.nil?
+      self.head = node
+      self.tail = node
+    else
+      self.tail.next_node = node
+      self.tail = node
+    end
+  end
+
+  def insert
+
+  end
+
+  def include?(find)
+    if self.head.data == find || self.head.next_node.data == find
+      true
+    elsif self.tail.data == find
+      true
+    else
+      false
+    end
+  end
 
   def prepend(node)
-    if self.head.nil?             # => true, false, false
-      self.head = node            # => #<Node:0x007f829c042358 @data="Ryan", @next_node=nil>
+    if self.head.nil?
+      self.head = node
     else
-      node.next_node = self.head  # => #<Node:0x007f829c042358 @data="Ryan", @next_node=nil>, #<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>
-      self.head = node            # => #<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>, #<Node:0x007f829c041cf0 @data="Jake", @next_node=#<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>>
-    end                           # => #<Node:0x007f829c042358 @data="Ryan", @next_node=nil>, #<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>, #<Node:0x007f829c041cf0 @data="Jake", @next_node=#<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>>
-  end                             # => :prepend
-end                               # => :prepend
+      node.next_node = self.head
+      self.head = node
+    end
+  end
+
+end
 
 
-node1 = Node.new("Ryan")  # => #<Node:0x007f829c042358 @data="Ryan", @next_node=nil>
-node2 = Node.new("Fred")  # => #<Node:0x007f829c042010 @data="Fred", @next_node=nil>
-node3 = Node.new("Jake")  # => #<Node:0x007f829c041cf0 @data="Jake", @next_node=nil>
-list1 = List.new          # => #<List:0x007f829c040ad0 @head=nil>
 
-list1.prepend(node1)  # => #<Node:0x007f829c042358 @data="Ryan", @next_node=nil>
-list1                 # => #<List:0x007f829c040ad0 @head=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>
-list1.prepend(node2)  # => #<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>
-list1                 # => #<List:0x007f829c040ad0 @head=#<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>>
-list1.prepend(node3)  # => #<Node:0x007f829c041cf0 @data="Jake", @next_node=#<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>>
-list1                 # => #<List:0x007f829c040ad0 @head=#<Node:0x007f829c041cf0 @data="Jake", @next_node=#<Node:0x007f829c042010 @data="Fred", @next_node=#<Node:0x007f829c042358 @data="Ryan", @next_node=nil>>>>
-list1.head.data       # => "Jake"
+# node1 = Node.new("Ryan")
+# node2 = Node.new("Fred")
+# node3 = Node.new("Jake")
+# list1 = List.new
+# node1 = Node.new("Ryan")
+# list1.append(node2)
+# list1
+# list1.append(node3)
+# list1
+# list1.append(node1)
+# list1
+# list1.tail
+# list1
 
-
-node1.data  # => "Ryan"
+# list1.include?("Ryan")
